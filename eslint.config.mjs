@@ -2,9 +2,10 @@ import js from "@eslint/js";
 import globals from "globals";
 import prettier from "eslint-config-prettier";
 import reactPlugin from "eslint-plugin-react";
+import tseslint from "typescript-eslint";
 
 /** @type {import('eslint').Linter.Config[]} */
-export default [
+export default tseslint.config(
   // debugger;
   js.configs.recommended,
   {
@@ -31,5 +32,5 @@ export default [
       "react/prop-types": "off",
     },
   },
-  prettier,
-];
+  prettier
+);
