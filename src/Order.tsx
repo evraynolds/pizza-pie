@@ -23,7 +23,8 @@ export default function Order() {
   }
 
   async function fetchPizzaTypes() {
-    await new Promise((resolve) => setTimeout(resolve, 4000));
+    // wait n seconds example
+    // await new Promise((resolve) => setTimeout(resolve, 4000));
 
     const pizzaRes = await fetch("/api/pizzas");
     const pizzaJson = await pizzaRes.json();
@@ -93,16 +94,20 @@ export default function Order() {
             </div>
           </div>
           <button type="submit">Add to Cart</button>
+        </div>
+        {loading ? (
+          "loading..."
+        ) : (
           <div className="order-pizza">
             <Pizza
-              name={pizzaType}
-              description="pep pizza"
-              image="/public/pizzas/pepperoni.webp"
+              name={selectedPizza?.name}
+              description={selectedPizza?.description}
+              image={selectedPizza?.image}
             />
-            <p>{pizzaSize}</p>
-            <p>£14.16</p>
+            {/* <p>{pizzaSize}</p> */}
+            {selectedPizza && <p>£{selectedPizza?.sizes[pizzaSize]}</p>}
           </div>
-        </div>
+        )}
       </form>
     </div>
   );

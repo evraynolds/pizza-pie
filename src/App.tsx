@@ -1,41 +1,25 @@
 // add to the top
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 // import Pizza from "./Pizza";
 import Order from "./Order";
-// import { StrictMode } from "react";
+import PizzaOfTheDay from "./PizzaOfTheDay";
 
 const App = () => {
   return (
-    <div>
-      <h1>Pizza Pie's - Order Now</h1>
-      <Order />
-
-      {/* <Pizza
+    <StrictMode>
+      <div>
+        <h1 className="logo">Pizza Pie's - Order Now</h1>
+        <Order />
+        <PizzaOfTheDay />
+        {/* <Pizza
         name="cheese"
         description="Melty goodness"
         image={"/public/pizzas/five_cheese.webp"}
       />
-      <Pizza
-        name="pepperoni"
-        description="round"
-        image={"/public/pizzas/pepperoni.webp"}
-      />
-      <Pizza
-        name="mushroom"
-        description="Fun! gi"
-        image={"/public/pizzas/pep_msh_pep.webp"}
-      />
-      <Pizza
-        name="vegetable"
-        description="Earthy!"
-        image={"/public/pizzas/veggie_veg.webp"}
-      />
-      <Pizza
-        name="meat"
-        description="It's a Feast!"
-        image={"/public/pizzas/big_meat.webp"}
-      /> */}
-    </div>
+*/}
+      </div>
+    </StrictMode>
   );
 
   // return React.createElement(
