@@ -1,15 +1,9 @@
-type PizzaProps = {
-  name: string;
-  description: string;
-  image?: string;
-};
-
-const Pizza = ({ name, description, image }: PizzaProps) => {
+const Pizza = (props) => {
   return (
     <div className="pizza">
-      <h1>{name}</h1>
-      <p>{description}</p>
-      <img src={image} alt={name} />
+      <h1>{props.name}</h1>
+      <p>{props.description}</p>
+      <img src={props.image} alt={props.name} />
     </div>
   );
 };

@@ -1,36 +1,39 @@
-// add to the top
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-// import Pizza from "./Pizza";
-import Order from "./Order";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Home from "./Home";
 import PizzaOfTheDay from "./PizzaOfTheDay";
+import Header from "./Header";
+import Order from "./Order";
+import { CartContext } from "./contexts";
+import { useState } from "react";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Past from "./Past";
+const queryClient = new QueryClient()
 
 const App = () => {
+  const cartHook = useState([]);
   return (
     <StrictMode>
-      <div>
-        <h1 className="logo">Pizza Pie's - Order Now</h1>
-        <Order />
-        <PizzaOfTheDay />
-        {/* <Pizza
-        name="cheese"
-        description="Melty goodness"
-        image={"/public/pizzas/five_cheese.webp"}
-      />
-*/}
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <CartContext.Provider value={cartHook}>
+          <BrowserRouter>
+            <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/order" element={<Order />} />
+                <Route path="/past" element={<Past />} />
+              </Routes>
+            <PizzaOfTheDay />
+          </BrowserRouter>
+        </CartContext.Provider>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </StrictMode>
   );
-
-  // return React.createElement(
-  //   "div",
-  //   {},
-  //   React.createElement("h1", {}, "Papa Gino's"),
-  //   React.createElement(Pizza)
-  // );
 };
 
-// const container = document.getElementById("root");
-// const root = ReactDOM.createRoot(container);
-const root = createRoot(document.getElementById("root"));
+const container = document.getElementById("root");
+const root = createRoot(container);
 root.render(<App />);
