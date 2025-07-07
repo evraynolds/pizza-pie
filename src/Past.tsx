@@ -9,6 +9,7 @@ export default function Past() {
     queryFn: () => getPastOrders(page),
     staleTime: 30000,
   });
+
   if (isLoading) {
     return (
       <div className="past-orders">
